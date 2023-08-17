@@ -45,12 +45,18 @@ const Header = () => {
                     alignItems: "center",
                 }}
             >
-                <img
-                    src={logo}
-                    alt="TatvaSoft_Logo"
-                    className="h-24 ml-40 w-44"
-                    style={{ width: "150px" }}
-                />
+                <Button
+                    onClick={() => {
+                        navigate("/");
+                    }}
+                >
+                    <img
+                        src={logo}
+                        alt="TatvaSoft_Logo"
+                        className="h-24 ml-40 w-44"
+                        style={{ width: "150px" }}
+                    />
+                </Button>
 
                 <div className="mr-40  space-x-1 flex">
                     {!authData.id && (
@@ -111,7 +117,7 @@ const Header = () => {
                             textTransform: "capitalize",
                             fontWeight: "bold",
                             position: "absolute",
-                            top: "2.5rem",
+                            top: "2.9rem",
                             right: "30px",
                         }}
                         startIcon={<HiShoppingCart />}

@@ -112,17 +112,24 @@ function Home() {
             >
                 Book Listing
             </Typography>
-            <div className="flex items-center justify-center m-5">
+            {/* <div className="flex items-center justify-center m-5">
                 <div className="border-t-2 border-black w-32"></div>
-            </div>
+            </div> */}
             <div className="flex justify-between items-center">
                 <div
                     className="flex items-center space-x-10"
-                    style={{ display: "flex", width: "30%", margin: "auto" }}
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-evenly",
+                        alignItems: "center",
+                        width: "40%",
+                        margin: "auto",
+                        marginTop: "30px",
+                    }}
                 >
                     <TextField
                         name="text"
-                        placeholder="Search..."
+                        placeholder="Search for books"
                         variant="outlined"
                         size="small"
                         onChange={(e) => {
@@ -142,16 +149,28 @@ function Home() {
                     />
                     <div
                         className="flex"
-                        style={{ display: "flex", marginLeft: "10px" }}
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                        }}
                     >
                         <Typography
                             variant="subtitle1"
-                            sx={{ marginRight: "10px" }}
+                            sx={{
+                                marginRight: "10px",
+                                width: "100px",
+                                textAlign: "right",
+                            }}
                         >
                             Sort By
                         </Typography>
 
-                        <select onChange={sortBook} value={sortBy}>
+                        <select
+                            className="form-select"
+                            onChange={sortBook}
+                            value={sortBy}
+                        >
                             <option value="a-z">a - z</option>
                             <option value="z-a">z - a</option>
                         </select>
@@ -159,24 +178,28 @@ function Home() {
                 </div>
                 <Typography
                     variant="h6"
-                    style={{ textAlign: "center", fontSize: "0.8rem" }}
+                    style={{
+                        textAlign: "center",
+                        fontSize: "0.8rem",
+                        marginTop: "20px",
+                    }}
                 >
                     Total - {bookResponse.totalItems} items found
                 </Typography>
             </div>
             <div
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-10"
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
                 style={{
                     display: "flex",
                     width: "100%",
                     justifyContent: "center",
                     flexWrap: "wrap",
-                    margin: "0px",
+                    marginTop: "10px",
                 }}
             >
                 {books.map((book, index) => (
                     <div
-                        className="rounded-lg shadow-xl flex flex-col space-y-4 border-black"
+                        className="card border shadow rounded-lg shadow-xl flex flex-col space-y-4"
                         key={index}
                         style={{
                             display: "flex",
@@ -186,7 +209,7 @@ function Home() {
                             margin: "10px",
                         }}
                     >
-                        <div className="w-full h-56 overflow-hidden rounded-lg">
+                        <div className="card-img-top w-full h-56 overflow-hidden rounded-lg">
                             <img
                                 src={book.base64image}
                                 alt=""
@@ -198,37 +221,41 @@ function Home() {
                                 }}
                             />
                         </div>
-                        <div className="p-5">
-                            <h2 className="text-xl font-bold line-clamp-1 text-[#474747] ">
-                                {book.name}
-                            </h2>
-                            <span className="text-gray-600 mt-2 font-semibold">
-                                {book.category}
-                            </span>
-                            <p className=" line-clamp-2 h-14 mt-2">
-                                {book.description}
-                            </p>
-                            <p className=" mb-2 text-xl text-gray-500">
-                                MRP
-                                <span className="mx-1">&#8377;</span>
-                                {book.price}
-                            </p>
-                            <Button
-                                variant="contained"
-                                sx={{
-                                    color: "white",
-                                    backgroundColor: "#f14d54",
-                                    "&:hover": {
-                                        backgroundColor: "#f14d54", // Change the hover background color
-                                    },
-                                    marginTop: "8px",
-                                    fontWeight: "bold",
-                                }}
-                                fullWidth
-                                onClick={() => addToCart(book)}
-                            >
-                                add to cart
-                            </Button>
+                        <div className="card-body p-3 d-flex flex-column justify-content-between">
+                            <div>
+                                <h2 className="card-title text-xl font-bold line-clamp-1 text-[#474747] ">
+                                    {book.name}
+                                </h2>
+                                <p className="card-subtitle text-secondary">
+                                    {book.category}
+                                </p>
+                                <p className="card-text line-clamp-2 h-14 mt-2">
+                                    {book.description}
+                                </p>
+                                <p className=" mb-2 text-xl text-gray-500">
+                                    MRP
+                                    <span className="mx-1">&#8377;</span>
+                                    {book.price}
+                                </p>
+                            </div>
+                            <div>
+                                <Button
+                                    variant="contained"
+                                    sx={{
+                                        color: "white",
+                                        backgroundColor: "#f14d54",
+                                        "&:hover": {
+                                            backgroundColor: "#f14d54", // Change the hover background color
+                                        },
+
+                                        fontWeight: "bold",
+                                    }}
+                                    fullWidth
+                                    onClick={() => addToCart(book)}
+                                >
+                                    add to cart
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 ))}
@@ -257,3 +284,5 @@ function Home() {
 }
 
 export default Home;
+
+// Attack on titan is a manga written by hajime iseyama. it is a story about a young boy who wants freedom from the constant fear of titans and wants to travel the world outside the walls. AOT touches variety of real world problems and it is a great mix of suspense, thrill, mystery and action.

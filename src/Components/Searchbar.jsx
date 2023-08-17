@@ -18,8 +18,13 @@ export default function Searchbar() {
         setBookList(res);
     };
     const search = () => {
-        searchBook();
-        setOpenSearchResult(true);
+        if (!query) {
+            setOpenSearchResult(false);
+            setQuery("");
+        } else {
+            searchBook();
+            setOpenSearchResult(true);
+        }
     };
     const navigate = useNavigate();
 
@@ -54,58 +59,58 @@ export default function Searchbar() {
         >
             <div
                 style={{
-                    display: "inline-block",
                     position: "relative",
                     top: "-6px",
                     display: "flex",
-                    justifyContent: "center",
+                    flexDirection: "column",
                     alignItems: "center",
                 }}
             >
-                <TextField
-                    hiddenLabel
-                    label="Search Books Globally..."
-                    type={"text"}
-                    value={query}
-                    variant="outlined"
-                    size="small"
-                    sx={{
-                        width: "550px",
-                        backgroundColor: "white",
-                        fontStyle: "italic",
-                        "& .MuiInputBase-input": {
-                            fontStyle: "normal",
-                        },
-                    }}
-                    onChange={(e) => {
-                        setQuery(e.target.value);
-                    }}
-                />
-
-                <div
-                    style={{
-                        // width: "20%",
-                        display: "inline-block",
-                        marginTop: "-3px",
-                    }}
-                >
-                    <Button
-                        variant="contained"
-                        startIcon={<AiOutlineSearch />}
+                <div className="d-flex justify-content-center align-items-center">
+                    <TextField
+                        hiddenLabel
+                        label="Search Books Globally..."
+                        type={"text"}
+                        value={query}
+                        variant="outlined"
+                        size="small"
                         sx={{
-                            color: "white",
-                            backgroundColor: "#80BF32",
-                            "&:hover": {
-                                backgroundColor: "#80BF32", // Change the hover background color
+                            width: "550px",
+                            backgroundColor: "white",
+                            fontStyle: "italic",
+                            "& .MuiInputBase-input": {
+                                fontStyle: "normal",
                             },
-                            textTransform: "capitalize",
-                            margin: "5px",
                         }}
-                        onClick={search}
+                        onChange={(e) => {
+                            setQuery(e.target.value);
+                        }}
+                    />
+
+                    <div
+                        style={{
+                            // width: "20%",
+                            display: "inline-block",
+                            marginTop: "-3px",
+                        }}
                     >
-                        Search
-                    </Button>
-                    {/* <Button
+                        <Button
+                            variant="contained"
+                            startIcon={<AiOutlineSearch />}
+                            sx={{
+                                color: "white",
+                                backgroundColor: "#80BF32",
+                                "&:hover": {
+                                    backgroundColor: "#80BF32", // Change the hover background color
+                                },
+                                textTransform: "capitalize",
+                                margin: "5px",
+                            }}
+                            onClick={search}
+                        >
+                            Search
+                        </Button>
+                        {/* <Button
                         variant="contained"
                         sx={{
                             color: "white",
@@ -122,10 +127,11 @@ export default function Searchbar() {
                     >
                         Cancel
                     </Button> */}
+                    </div>
                 </div>
                 {openSearchResult && (
                     <div
-                        className="bg-white w-[550px] shadow-lg absolute"
+                        className="bg-white w-[550px] shadow-lg absolute mt-3"
                         style={{
                             background: "white",
                             zIndex: "9",
@@ -135,15 +141,14 @@ export default function Searchbar() {
                         }}
                     >
                         {bookList?.length === 0 && <p>No Product Found</p>}
-                        <List>
+                        <List style={{ padding: "10px" }}>
                             {bookList?.length > 0 &&
                                 bookList.map((item, index) => (
                                     <ListItem
-                                        className="flex-1 "
+                                        className="flex-1 mb-2"
                                         key={index}
                                         style={{
                                             borderBottom: "1px solid black",
-                                            marginLeft: "13px",
                                             padding: "0",
                                         }}
                                     >

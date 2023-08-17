@@ -126,12 +126,13 @@ const Login = () => {
                     }}
                 >
                     <Typography variant="h6">New Customer</Typography>
-                    <Divider
+                    {/* <Divider
                         sx={{
                             marginTop: "20px",
                             width: "inherit",
                         }}
-                    />
+                    /> */}
+                    <hr style={{ width: "50%" }} />
                     <Typography variant="body2" sx={{ marginTop: "20px" }}>
                         Registration is free and easy.
                     </Typography>
@@ -160,12 +161,13 @@ const Login = () => {
                 </div>
                 <div style={{ width: "30%" }}>
                     <Typography variant="h6">Registered Customers</Typography>
-                    <Divider
+                    {/* <Divider
                         sx={{
                             marginTop: "20px",
                             marginRight: "160px",
                         }}
-                    />
+                    /> */}
+                    <hr style={{ width: "80%" }} />
                     <Typography variant="body2" sx={{ marginTop: "20px" }}>
                         If you have an account with us, please log in.
                     </Typography>
